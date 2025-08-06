@@ -1,10 +1,10 @@
-# This is a fixed workflow to build and deploy your Jekyll site.
-# It includes an extra step to install common build dependencies.
+# This is the final, most comprehensive workflow to build and deploy your Jekyll site.
+# It installs a broad range of dependencies and explicitly runs the build process.
 
 name: Deploy Jekyll site to Pages
 
 on:
-  # This workflow will run every time you push to the 'master' branch.
+  # This workflow will run every time you push to the 'main' branch.
   push:
     branches: ["master"]
 
@@ -30,9 +30,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # This new step installs system-level dependencies required by some gems.
+      # This new, more comprehensive step installs common dependencies
+      # required for many Ruby gems to compile.
       - name: Install Build Dependencies
-        run: sudo apt-get update -y && sudo apt-get install -y build-essential libyaml-dev
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y build-essential libyaml-dev zlib1g-dev
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
