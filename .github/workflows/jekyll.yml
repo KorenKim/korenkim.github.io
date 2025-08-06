@@ -1,0 +1,53 @@
+# This workflow is a modern way to build and deploy Jekyll sites with GitHub Pages.
+# It ensures your site is built using the same dependencies you have locally.
+
+name: Deploy Jekyll with GitHub Actions
+
+on:
+  # This workflow will run every time you push to the 'main' branch.
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab on GitHub.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "jekyll-gh-pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build with Jekyll
+        uses: jekyll/builder-action@v2
+        with:
+          # Use our specific Gemfile to build the site.
+          with-bundler: true
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './_site'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
