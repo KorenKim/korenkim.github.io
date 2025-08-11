@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+
+<!-- THIS IS ALL AN EXAMPLE
+
+  {% include head.html %}
+
+  <body>
+
+    <nav class="nav">
+      <ul>
+        <li><a href="{{ '/' | relative_url }}">Posts</a></li>
+        <li><a href="{{ '/projects' | relative_url }}">All Projects</a></li>
+        <li><a href="{{ '/about' | relative_url }}">About Me</a></li>
+        <li><a href="https://github.com/your-github-username" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="{{ '/atom.xml' | relative_url }}">RSS</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section class="projects">
+        {% for post in site.posts %}
+          <article class="project">
+            <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+            <p>{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+          </article>
+        {% endfor %}
+      </section>
+    </main>
+
+  </body>
+-->
+</html>

@@ -1,3 +1,5 @@
+/*base styles, topography default, resets, margins, font sizes, colors for text/links/headings */
+
 /*
  *                        ___
  *                       /\_ \
@@ -37,7 +39,7 @@
 
 * {
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
+    -moz-box-sizing: border-box;
           box-sizing: border-box;
 }
 
@@ -59,8 +61,8 @@ html {
 }
 
 body {
-  color: #515151;
-  background-color: #fff;
+  color: #515151; /*text color*/
+  background-color: #ffffff; /*background for page */
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
@@ -88,7 +90,15 @@ h1, h2, h3, h4, h5, h6 {
   text-rendering: optimizeLegibility;
 }
 h1 {
-  font-size: 2rem;
+  font-size: 2rem;    
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
 }
 h2 {
   margin-top: 1rem;
@@ -406,7 +416,7 @@ tbody tr:nth-child(odd) th {
 
 /* Only provide a hover state for linked pagination items */
 a.pagination-item:hover {
-  background-color: #f5f5f5;
+  background-color: #911a1a;
 }
 
 @media (min-width: 30em) {

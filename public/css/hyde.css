@@ -1,3 +1,5 @@
+/* mostly sidebar (positioning, color, fonts, nav links, repsonsive layout adjustment)*/
+
 /*
  *  __                  __
  * /\ \                /\ \
@@ -32,7 +34,9 @@
  */
 
 html {
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  font-family: ui-rounded, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
 }
 @media (min-width: 48em) {
   html {
@@ -53,34 +57,50 @@ html {
  * out above content in mobile and later moves to the side with wider viewports.
  */
 
+
+
 .sidebar {
-  text-align: center;
-  padding: 2rem 1rem;
-  color: rgba(255,255,255,.5);
-  background-color: #202020;
+    background-color: #f8f8f8;
+    color: #000000;
+    padding: 2rem 1rem;
+    overflow: auto;
 }
-@media (min-width: 48em) {
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 18rem;
-    text-align: left;
-  }
+@media only screen and (min-width: 48em) {
+    .sidebar {
+        position: fixed;
+        margin: 2rem;
+        padding: 0 0;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 19rem;
+        text-align: left;
+        border-radius: 1rem;
+    }
 }
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
 
 /* Sidebar links */
 .sidebar a {
-  color: #fff;
+  color: rgb(215, 183, 0)
 }
 
 /* About section */
-.sidebar-about h1 {
+.sidebar-about h1 { /*changes the big title thing */
   color: #fff;
   margin-top: 0;
-  font-family: "Abril Fatface", serif;
-  font-size: 3.25rem;
+  font-size: 2rem;
 }
 
 /* Sidebar nav */
@@ -94,6 +114,7 @@ html {
 a.sidebar-nav-item:hover,
 a.sidebar-nav-item:focus {
   text-decoration: underline;
+
 }
 .sidebar-nav-item.active {
   font-weight: bold;
@@ -165,6 +186,9 @@ a.sidebar-nav-item:focus {
     margin-right: 22rem;
   }
 }
+
+
+
 
 
 
@@ -247,4 +271,122 @@ a.sidebar-nav-item:focus {
 .theme-base-0f .content a,
 .theme-base-0f .related-posts li a:hover {
   color: #8f5536;
+}
+
+
+
+
+
+
+
+
+
+
+/* --- Custom Homepage Styles --- */
+
+/* Navigation bar at top */
+.nav {
+  background-color: #111;
+  padding: 1rem 0;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  margin: 0;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  gap: 2rem;
+}
+
+.nav li {
+  display: inline;
+}
+
+.nav a {
+  color: #eee;
+  font-weight: 600;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav a:hover,
+.nav a:focus {
+  color: #268bd2;
+  text-decoration: underline;
+}
+
+/* Main content pushes down to avoid nav overlap */
+main {
+  padding-top: 5rem; /* Height of fixed nav + some padding */
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Projects grid */
+.projects {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.project {
+  background-color: #1e1e1e;
+  color: #eee;
+  padding: 1.5rem 2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.project:hover {
+  transform: translateY(-6px);
+}
+
+.pro
+
+
+/* for the post button thing */
+.post-block {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  background-color: #222; /* match dark theme */
+  color: #eee;
+}
+
+.post-block:hover {
+  /*background-color: #333; i dont like this feature */
+}
+
+.post-title {
+  margin: 0 0 0.3rem 0;
+  font-size: 1.25rem;
+}
+
+.post-title a {
+  text-decoration: none;
+  color: #7fc1ff; /* a nice blue for links */
+}
+
+.post-title a:hover {
+  text-decoration: underline;
+}
+
+.post-date {
+  color: #999;
+  font-size: 0.9rem;
 }

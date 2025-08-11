@@ -9,7 +9,7 @@ relative_permalinks: false # This is the only change to fix a fatal error.
 # Setup
 title:            Koren Kim
 tagline:          'A Jekyll theme'
-description:      'A brazen two-column <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
+description:      'Welcome to my blog. Made by <a href="https://www.instagram.com/fiippy_fish/" target="_blank">@fiippy_fish</a>.'
 url:              http://korenkim.github.io
 baseurl:          ""
 
