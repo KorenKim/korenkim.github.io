@@ -6,12 +6,27 @@ permalink: /
 
   <body class="theme-base">
     <!--To display button images at posts page -->
-      <div class="posts">
+    <div class="posts">
+  {% for post in paginator.posts %}
+    <div class="post-block">
+      <a href="{{ post.url }}" class="post-preview post-ref-{{ post.url | replace:'/','-' | remove_first:'-' }}"> <!--turns / in link to - for css-->        
+        <div class="post-preview-text">
+          <h1 class="post-preview-title">{{ post.title }}</h1>
+          <span class="post-preview-metadata">{{ post.date | date_to_string }}</span>
+        </div>
+        <picture>
+          <img class="post-preview-image" src="{{ post.image | default: '/assets/default.jpg' | relative_url }}" alt="{{ post.title }}">
+        </picture>
+      </a>
+    </div>
+  {% endfor %}
+    </div>
+
+      <!--<div class="posts">
         {% for post in paginator.posts %}
           <div class="post-block">
 
-            <a href="{{ post.url }}" class="post-preview post-ref-{{ post.url }}">
-              
+            <a href="{{ post.url }}" class="post-preview post-ref-{{ post.url | replace:'/','-' | remove_first:'-' }}">           
               <div class="post-preview-text">
                 <h1 class="post-preview-title">{{ post.title }}</h1>
                 <span class="post-preview-metadata">{{ post.date | date_to_string }}</span>
@@ -27,7 +42,11 @@ permalink: /
             </a>
           </div>
         {% endfor %}
-      </div>
+      </div>-->
+
+
+
+
 
       <!--
       <div class="posts">

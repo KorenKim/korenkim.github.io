@@ -168,13 +168,40 @@ margin-top: calc(-0.4rem + 1rem);
   }
 }
 
+.post-block {
+  margin-bottom: 2.5rem; /* margin between post-block */
+}
+
+
 .theme-base .content a.post-preview {
   display: block;
-  margin-bottom: 1rem;
   border-radius: 1rem;
   background: #000;
-  color: #FFF;
+  color: #FFF; 
 }
+
+.theme-base .content .post-preview-image { /*keeps image for post-image a certain size but crops */
+  width: 100%;          /* fill the width of the container */
+  height: auto;         /* height auto to keep aspect ratio */
+  aspect-ratio: 16 / 9; /* or whatever ratio you want */
+  object-fit: cover;    /* crop overflow */
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* post previews for each heading | make sure to include last - in title */
+.theme-base .content a.post-preview.post-ref-2025-08-12-liquid-crystals- {
+  background: #005940;
+}
+
+.theme-base .content a.post-preview.post-ref-1868-01-01-dostoevsky- {
+  background: #af2c2c;
+}
+
+.theme-base .content a.post-preview.post-ref-1779-10-09-napoleon- {
+  background: #1f48a9;
+}
+
 
 .theme-base .content a.post-preview:last-child {
   margin-bottom: -1rem;

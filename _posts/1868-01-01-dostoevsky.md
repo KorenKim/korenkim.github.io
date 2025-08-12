@@ -1,8 +1,9 @@
 ---
 layout: post
 title: Dostoevsky's Idiot
+date: 1868-01-01
+image: /public/assets/idiot.jpg
 ---
-
 
 <div class="message">
   Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
