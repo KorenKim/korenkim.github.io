@@ -5,18 +5,61 @@ permalink: /
 ---
 
   <body class="theme-base">
-
+    <!--To display button images at posts page -->
       <div class="posts">
         {% for post in paginator.posts %}
           <div class="post-block">
-            <h2 class="post-title">
-              <a href="{{ post.url }}">{{ post.title }}</a>
-            </h2>
-            <span class="post-date">{{ post.date | date_to_string }}</span>
+
+            <a href="{{ post.url }}" class="post-preview post-ref-{{ post.url }}">
+              
+              <div class="post-preview-text">
+                <h1 class="post-preview-title">{{ post.title }}</h1>
+                <span class="post-preview-metadata">{{ post.date | date_to_string }}</span>
+              </div>
+              
+              <picture>
+                <img class="post-preview-image" src="{{ '/public/assets/liquid-crystals.jpg' | relative_url }}" alt="Post image">
+              </picture>
+              
+            
+
+    
+            </a>
           </div>
         {% endfor %}
       </div>
 
+      <!--
+      <div class="posts">
+        {% for post in paginator.posts %}
+          <div class="post-block">
+
+            <a href="{{ post.url }}" class="post-preview post-ref-{{ post.url }}">
+              <div class="post-preview-text">
+                <h1 class="post-preview-title">{{ post.title }}</h1>
+                <span class="post-preview-metadata">{{ post.date | date_to_string }}</span>
+              </div>
+              <picture>
+                <source srcset="{{ '/assets/liquid-crystals.jpg' | relative_url }}" media="(prefers-color-scheme: dark)">
+                <img class="post-preview-image" src="{{ '/assets/liquid-crystals.jpg' | relative_url }}"">
+              </picture>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    -->
+<!--
+<a href="/kaleidoscopes/" class="post-preview post-ref-kaleidoscopes">
+    <div class="post-preview-text">
+      <h1 class="post-preview-title">Digital Kaleidoscopes</h1>
+      <span class="post-preview-metadata">24 Dec 2024</span>
+    </div>
+    <picture>
+      <source srcset="https://assets.leifgehrmann.com/posts/2024-kaleidoscopes/kaleidoscope-dark.jpg" media="(prefers-color-scheme: dark)">
+      <img class="post-preview-image" src="https://assets.leifgehrmann.com/posts/2024-kaleidoscopes/kaleidoscope-light.jpg">
+    </picture>
+  </a>
+-->
 
     <!--
     <div class="pagination">

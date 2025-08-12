@@ -35,6 +35,11 @@
   background-image: url('../assets/projects.png');
 }
 
+.sidebar-nav-item[href^="/photography/"]::before {
+  background-image: url('../assets/photography.png');
+}
+
+
 .sidebar-nav-item[href^="/about/"]::before {
   background-image: url('../assets/profile.png');
 }

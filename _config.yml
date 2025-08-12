@@ -29,3 +29,9 @@ github:
 plugins:
   - jekyll-paginate
   - jekyll-gist
+
+# for page stuff
+include:
+  - _pages
+
+  - public #im not sure if I need this
