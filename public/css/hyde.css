@@ -173,9 +173,11 @@ html {
   top: -7px;
 }
 
+/*
 + .sidebar-nav-icon:before {
   top: 7px;
 }
+*/
 
 .sidebar-nav-btn:checked + .sidebar-main .sidebar-nav-icon {
   background: transparent;
