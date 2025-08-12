@@ -1,0 +1,565 @@
+/* mostly sidebar (positioning, color, fonts, nav links, repsonsive layout adjustment)*/
+
+/*
+ *  __                  __
+ * /\ \                /\ \
+ * \ \ \___   __  __   \_\ \     __
+ *  \ \  _ `\/\ \/\ \  /'_` \  /'__`\
+ *   \ \ \ \ \ \ \_\ \/\ \_\ \/\  __/
+ *    \ \_\ \_\/`____ \ \___,_\ \____\
+ *     \/_/\/_/`/___/> \/__,_ /\/____/
+ *                /\___/
+ *                \/__/
+ *
+ * Designed, built, and released under MIT license by @mdo. Learn more at
+ * https://github.com/poole/hyde.
+ */
+
+
+/*
+ * Contents
+ *
+ * Global resets
+ * Sidebar
+ * Container
+ * Reverse layout
+ * Themes
+ */
+
+
+/*
+ * Global resets
+ *
+ * Update the foundational and global aspects of the page.
+ */
+
+html {
+  font-family: ui-rounded, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+@media (min-width: 48em) {
+  html {
+    font-size: 16px;
+  }
+}
+
+
+
+/*
+ * Sidebar
+ *
+ * Flexible banner for housing site name, intro, and "footer" content. Starts
+ * out above content in mobile and later moves to the side with wider viewports.
+ */
+
+
+
+.sidebar {
+    background-color: #f8f8f8;
+    color: #000000;
+    padding: 2rem 1rem;
+    overflow: auto;
+}
+@media only screen and (min-width: 48em) {
+    .sidebar {
+        position: fixed;
+        margin: 2rem;
+        padding: 0 0;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 19rem;
+        text-align: left;
+        border-radius: 1rem;
+    }
+}
+
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+
+/* Sidebar links */
+.sidebar a {
+  color: rgb(215, 183, 0)
+}
+
+/* About section */
+.sidebar-main h1 { /*changes the big title thing */
+  color: #fff;
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+/* Sidebar nav */
+.sidebar-nav {
+  margin-bottom: 1rem;
+}
+.sidebar-nav-item {
+  display: block;
+  line-height: 1.75;
+}
+a.sidebar-nav-item:hover,
+a.sidebar-nav-item:focus {
+  text-decoration: underline;
+
+}
+.sidebar-nav-item.active {
+  font-weight: bold;
+}
+
+/* Sticky sidebar
+ *
+ * Add the `sidebar-sticky` class to the sidebar's container to affix it the
+ * contents to the bottom of the sidebar in tablets and up.
+ */
+
+@media (min-width: 48em) {
+  .sidebar-sticky {
+    position: absolute;
+    right:  1rem;
+    bottom: 1rem;
+    left:   1rem;
+  }
+}
+
+
+/* Container
+ *
+ * Align the contents of the site above the proper threshold with some margin-fu
+ * with a 25%-wide `.sidebar`.
+ */
+
+.content {
+  padding-top:    4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 48em) {
+  .content {
+    max-width: 38rem;
+    margin-left: 20rem;
+    margin-right: 2rem;
+  }
+}
+
+@media (min-width: 48em) {
+  .content {
+    margin-left: 22rem;
+    margin-right: 4rem;
+  }
+}
+
+
+/*
+ * Reverse layout
+ *
+ * Flip the orientation of the page by placing the `.sidebar` on the right.
+ */
+
+@media (min-width: 48em) {
+  .layout-reverse .sidebar {
+    left: auto;
+    right: 0;
+  }
+  .layout-reverse .content {
+    margin-left: 2rem;
+    margin-right: 20rem;
+  }
+}
+
+@media (min-width: 48em) {
+  .layout-reverse .content {
+    margin-left: 4rem;
+    margin-right: 22rem;
+  }
+}
+
+
+/* for the little nav button thing */
+
+.sidebar-main { /*im not really sure what this does? but taken from lief gerhnmann */
+  display: flex;
+  flex-direction: row;
+}
+
+@media only screen and (min-width: 23em) {
+  .sidebar-nav-btn {
+      right: 2rem;
+  }
+}
+
+@media only screen and (min-width: 23.2em) {
+  .sidebar-nav-toggle {
+      flex-basis: 40px;
+  }
+}
+
+
+@media only screen and (min-width: 23.2em) {
+  .sidebar-nav-label {
+      margin-right: 1rem;
+      padding: 20px 10px 20px 10px;
+  }
+}
+
+.sidebar-nav-label {
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    margin-right: calc(-10px + 1rem);
+    padding: 20px 0 20px 0;
+    position: relative;
+    user-select: none;
+}
+
+.sidebar-nav-btn {
+  position: absolute;
+  right: 0.8rem;
+  top: 2rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+input[type="checkbox" i] {
+  background-color: initial;
+  cursor: default;
+  appearance: auto;
+  box-sizing: border-box;
+  margin: 3px 3px 3px 4px;
+  padding: initial;
+  border: initial;
+}
+
+input { /* not really sure what this does */
+    font-style: ;
+    font-variant-ligatures: ;
+    font-variant-caps: ;
+    font-variant-numeric: ;
+    font-variant-east-asian: ;
+    font-variant-alternates: ;
+    font-variant-position: ;
+    font-variant-emoji: ;
+    font-weight: ;
+    font-stretch: ;
+    font-size: ;
+    font-family: ;
+    font-optical-sizing: ;
+    font-size-adjust: ;
+    font-kerning: ;
+    font-feature-settings: ;
+    font-variation-settings: ;
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    background-color: field;
+    margin: 0em 0em 0em 0em;
+    padding: 1px 0px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+    padding-block: 1px;
+    padding-inline: 2px;
+}
+
+.sidebar-nav-btn:checked + .sidebar-main .sidebar-nav-icon {
+    background: transparent;
+}
+
+
+
+.sidebar-nav-icon {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-radius: 1rem;
+    background: #000;
+    display: block;
+    height: 3px;
+    position: relative;
+    transition: background .2s ease-out;
+      transition-behavior: normal;
+      transition-duration: 0.2s;
+      transition-timing-function: ease-out;
+      transition-delay: 0s;
+      transition-property: background;
+    width: 20px;
+}
+
+
+
+/*pseudo for button thing */
+.sidebar-nav-btn:checked + .sidebar-main .sidebar-nav-icon:before, .sidebar-nav-btn:checked + .sidebar-main .sidebar-nav-icon:after {
+    top: 0;
+}
+
+.sidebar-nav-btn:checked + .sidebar-main .sidebar-nav-icon:before {
+    transform: rotate(-45deg);
+}
+
+.sidebar-nav-icon:before {
+    top: 7px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .sidebar-nav-icon:before, .sidebar-nav-icon:after, .sidebar-nav-icon {
+        background: #FFF;
+    }
+}
+
+.sidebar-nav-icon:before, .sidebar-nav-icon:after {
+    border-radius: 1rem;
+    background: #000;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 100%;
+}
+
+
+/* after button */
+.sidebar-nav-btn:checked + .sidebar-main .sidebar-nav-icon:before, .sidebar-nav-btn:checked + .sidebar-main .sidebar-nav-icon:after {
+    top: 0;
+}
+.sidebar-nav-btn:checked + .sidebar-main .sidebar-nav-icon:after {
+    transform: rotate(45deg);
+}
+.sidebar-nav-icon:after {
+    top: -7px;
+}
+@media (prefers-color-scheme: dark) {
+    .sidebar-nav-icon:before, .sidebar-nav-icon:after, .sidebar-nav-icon {
+        background: #FFF;
+    }
+}
+.sidebar-nav-icon:before, .sidebar-nav-icon:after {
+    border-radius: 1rem;
+    background: #000;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 100%;
+}
+
+
+/*
+ * Themes
+ *
+ * As of v1.1, Hyde includes optional themes to color the sidebar and links
+ * within blog posts. To use, add the class of your choosing to the `body`.
+ */
+
+/* Base16 (http://chriskempson.github.io/base16/#default) */
+
+/* Red */
+.theme-base-08 .sidebar {
+  background-color: #ac4142;
+}
+.theme-base-08 .content a,
+.theme-base-08 .related-posts li a:hover {
+  color: #ac4142;
+}
+
+/* Orange */
+.theme-base-09 .sidebar {
+  background-color: #d28445;
+}
+.theme-base-09 .content a,
+.theme-base-09 .related-posts li a:hover {
+  color: #d28445;
+}
+
+/* Yellow */
+.theme-base-0a .sidebar {
+  background-color: #f4bf75;
+}
+.theme-base-0a .content a,
+.theme-base-0a .related-posts li a:hover {
+  color: #f4bf75;
+}
+
+/* Green */
+.theme-base-0b .sidebar {
+  background-color: #90a959;
+}
+.theme-base-0b .content a,
+.theme-base-0b .related-posts li a:hover {
+  color: #90a959;
+}
+
+/* Cyan */
+.theme-base-0c .sidebar {
+  background-color: #75b5aa;
+}
+.theme-base-0c .content a,
+.theme-base-0c .related-posts li a:hover {
+  color: #75b5aa;
+}
+
+/* Blue */
+.theme-base-0d .sidebar {
+  background-color: #6a9fb5;
+}
+.theme-base-0d .content a,
+.theme-base-0d .related-posts li a:hover {
+  color: #6a9fb5;
+}
+
+/* Magenta */
+.theme-base-0e .sidebar {
+  background-color: #aa759f;
+}
+.theme-base-0e .content a,
+.theme-base-0e .related-posts li a:hover {
+  color: #aa759f;
+}
+
+/* Brown */
+.theme-base-0f .sidebar {
+  background-color: #8f5536;
+}
+.theme-base-0f .content a,
+.theme-base-0f .related-posts li a:hover {
+  color: #8f5536;
+}
+
+
+
+
+
+
+
+
+
+
+/* --- Custom Homepage Styles --- */
+
+/* Navigation bar at top */
+.nav {
+  background-color: #111;
+  padding: 1rem 0;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  margin: 0;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  gap: 2rem;
+}
+
+.nav li {
+  display: inline;
+}
+
+.nav a {
+  color: #eee;
+  font-weight: 600;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav a:hover,
+.nav a:focus {
+  color: #268bd2;
+  text-decoration: underline;
+}
+
+/* Main content pushes down to avoid nav overlap */
+main {
+  padding-top: 5rem; /* Height of fixed nav + some padding */
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Projects grid */
+.projects {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.project {
+  background-color: #1e1e1e;
+  color: #eee;
+  padding: 1.5rem 2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.project:hover {
+  transform: translateY(-6px);
+}
+
+.pro
+
+
+/* for the post button thing */
+.post-block {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  background-color: #222; /* match dark theme */
+  color: #eee;
+}
+
+.post-block:hover {
+  /*background-color: #333; i dont like this feature */
+}
+
+.post-title {
+  margin: 0 0 0.3rem 0;
+  font-size: 1.25rem;
+}
+
+.post-title a {
+  text-decoration: none;
+  color: #7fc1ff; /* a nice blue for links */
+}
+
+.post-title a:hover {
+  text-decoration: underline;
+}
+
+.post-date {
+  color: #999;
+  font-size: 0.9rem;
+}

@@ -1,0 +1,251 @@
+.sidebar-nav-item {
+  border-radius: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  max-width: fit-content;
+  padding-right: 1rem;
+}
+
+.sidebar-nav-item-active {
+  background-color: #eee;
+}
+
+.sidebar-nav-item::before {
+  content: '';
+  display: inline-block;
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 1rem;
+  height: 1rem;
+  margin-left: 1rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-right: 0.5rem;
+  vertical-align: top;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.sidebar-nav-item[href="/"]::before {
+  background-image: url('../assets/posts.png');
+}
+
+.sidebar-nav-item[href^="/projects/"]::before {
+  background-image: url('../assets/projects.png');
+}
+
+.sidebar-nav-item[href^="/about/"]::before {
+  background-image: url('../assets/profile.png');
+}
+
+.sidebar-nav-item[href^="https://github.com"]::before {
+  background-image: url('../assets/github.png');
+}
+
+
+/* for the version and copyright footer */
+
+.footer::before {
+  display:none;
+}
+.footer {
+  color: inherit;
+  font-size: 0.875rem;
+  margin-left: 1rem;
+}
+
+@media (min-width: 48em) {
+  .sidebar-nav-item {
+    max-width: none;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .sidebar-nav-item-active {
+    background-color: #333;
+  }
+
+  .sidebar-nav-item::before {
+    filter: invert(100%);
+  }
+}
+
+.sidebar-nav-item-other {
+  opacity: 0.5;
+}
+
+img, video, iframe {
+  border-radius: 1rem;
+}
+
+video {
+  background: #000;
+}
+
+details {
+  background-color: #f8f8f8;
+}
+
+details + details {
+  border-top: 0.25rem solid #F0F0F0;
+}
+details hr {
+  background-color: #AFAFAF;
+  height: 0.25rem;
+  margin: 0.75rem 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  details {
+    background-color: #212121;
+  }
+  details + details {
+    border-color: #313131;
+  }
+  details hr {
+    background-color: #AFAFAF;
+  }
+}
+
+details:first-of-type {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+details:last-of-type {
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+summary {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+details > p,
+details > center > p,
+details > img,
+details > a > img,
+details > ol,
+details > ul,
+details > dl,
+details > hr,
+details > div {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+details > img,
+details > a > img {
+  max-width: calc(100% - 2rem);
+}
+
+details > :not(summary):last-child {
+  margin-bottom: 0;
+  padding-bottom: 1rem;
+}
+
+/*
+For some reason there is a whitespace of 0.4rem between iframes.
+We normalise it and add the same margin that exists between the page margins
+*/
+iframe + iframe {
+margin-top: calc(-0.4rem + 1rem);
+}
+@media only screen and (min-width: 48em) {
+  iframe + iframe {
+  margin-top: calc(-0.4rem + 2rem);
+  }
+}
+
+.theme-base .content a.post-preview {
+  display: block;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+  background: #000;
+  color: #FFF;
+}
+
+.theme-base .content a.post-preview:last-child {
+  margin-bottom: -1rem;
+}
+
+@media only screen and (min-width: 48em) {
+  .theme-base .content a.post-preview {
+    margin-bottom: 2rem;
+  }
+}
+
+@media only screen and (min-width: 64em) {
+  .theme-base .content a.post-preview {
+    margin-bottom: 2rem;
+  }
+}
+
+.theme-base .content .post-preview-text {
+  padding: 1rem;
+}
+
+@media only screen and (min-width: 32em) {
+  .theme-base .content .post-preview-text {
+    padding: 2rem;
+  }
+}
+
+.theme-base .content .post-preview-title {
+  color: inherit;
+  margin-top: 0;
+}
+
+.theme-base .content .post-preview-metadata {
+  display: block;
+  color: inherit;
+  margin-top: -.5rem;
+}
+
+.theme-base .content .post-preview-image {
+  width: 100%;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+sup {
+  font-size: 0.574rem;
+}
+
+.footnotes {
+  font-size: smaller;
+}
+
+.footnotes li:target {
+  outline: auto;
+}
+
+p.copyright-notice, p.warning-notice {
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #f8f8c0;
+}
+
+@media (prefers-color-scheme: dark) {
+  p.copyright-notice, p.warning-notice {
+    background-color: #313100;
+  }
+}
+
+p.incomplete-notice {
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #f8e0e0;
+}
+
+@media (prefers-color-scheme: dark) {
+  p.incomplete-notice {
+    background-color: #311111;
+  }
+}

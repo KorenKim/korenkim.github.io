@@ -1,3 +1,5 @@
+/*base styles, topography default, resets, margins, font sizes, colors for text/links/headings */
+
 /*
  *                        ___
  *                       /\_ \
@@ -37,8 +39,8 @@
 
 * {
   -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+    -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 html,
@@ -48,6 +50,7 @@ body {
 }
 
 html {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
 }
@@ -58,34 +61,16 @@ html {
 }
 
 body {
-  color: #515151;
-  background-color: #fff;
+  color: #515151; /*text color*/
+  background-color: #ffffff; /*background for page */
   -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-}
-
-@media print {
-  body {
-    color: #000;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    color: #AFAFAF;
-    background-color: #000;
-  }
+      -ms-text-size-adjust: 100%;
 }
 
 /* No `:visited` state is required by default (browsers will use `a`) */
 a {
   color: #268bd2;
   text-decoration: none;
-}
-@media print {
-  a {
-    text-decoration: underline;
-  }
 }
 a strong {
   color: inherit;
@@ -104,21 +89,19 @@ h1, h2, h3, h4, h5, h6 {
   color: #313131;
   text-rendering: optimizeLegibility;
 }
-@media print {
-  h1, h2, h3, h4, h5, h6 {
-    color: #000000;
-  }
-}
-@media (prefers-color-scheme: dark) {
-  h1, h2, h3, h4, h5, h6 {
-    color: #CFCFCF;
-  }
-}
 h1 {
-  font-size: 2rem;
+  font-size: 2rem;    
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
 }
 h2 {
-  margin-top: 2rem;
+  margin-top: 1rem;
   font-size: 1.5rem;
 }
 h3 {
@@ -139,21 +122,12 @@ p {
 strong {
   color: #303030;
 }
-@media (prefers-color-scheme: dark) {
-  strong {
-    color: #CECECE;
-  }
-}
+
 
 /* Lists */
 ul, ol, dl {
   margin-top: 0;
   margin-bottom: 1rem;
-  padding-inline-start: 1.5rem;
-}
-
-li > p:last-child {
-  margin-bottom: 0;
 }
 
 dt {
@@ -168,22 +142,8 @@ hr {
   position: relative;
   margin: 1.5rem 0;
   border: 0;
-  height: 0.5rem;
-  background: #f8f8f8;
-  border-radius: 1rem;
-}
-
-@media print {
-  hr {
-    height: 0.25rem;
-    background: #000;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  hr {
-    background: #212121;
-  }
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #fff;
 }
 
 abbr {
@@ -205,9 +165,9 @@ pre {
 code {
   padding: .25em .5em;
   font-size: 85%;
-  color: #c30;
+  color: #bf616a;
   background-color: #f9f9f9;
-  border-radius: 1rem;
+  border-radius: 3px;
 }
 pre {
   display: block;
@@ -229,26 +189,13 @@ pre code {
   background-color: transparent;
 }
 
-@media (prefers-color-scheme: dark) {
-  code {
-    color: #ed9d13;
-    background-color: #212121;
-  }
-  pre {
-    background-color: #212121;
-  }
-}
-
 /* Pygments via Jekyll */
 .highlight {
   margin-bottom: 1rem;
-  border-radius: 1rem;
+  border-radius: 4px;
 }
 .highlight pre {
   margin-bottom: 0;
-  white-space: pre;
-  overflow-x: auto;
-  word-wrap: normal;
 }
 
 /* Gist via GitHub Pages */
@@ -275,99 +222,43 @@ pre code {
 
 /* Quotes */
 blockquote {
-  position: relative;
-  margin: 1rem 0 1rem 2rem;
-  min-height: 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: .5rem 1rem;
+  margin: .8rem 0;
+  color: #7a7a7a;
+  border-left: .25rem solid #e5e5e5;
 }
-
-blockquote::before {
-  display:inline-block;
-  width: 0.25rem;
-  height: 100%;
-  margin-left: -1.375rem;
-  content: '';
-  background-color:#AFAFAF;
-  text-align:right;
-  position:absolute;
-  border-radius: 1rem;
-  top:0;
-  bottom:0;
-  left:0;
-}
-
-blockquote::after {
-  display:inline-block;
-  width: 1.5rem;
-  height: 3rem;
-  margin-left: -2rem;
-  content: '';
-  background-image: url('../img/quoteblock-light.svg');
-  background-repeat: no-repeat;
-  background-size: contain;
-  text-align:right;
-  position:absolute;
-  top:0;
-  bottom:0;
-  left:0;
-}
-
-blockquote > *:last-child {
+blockquote p:last-child {
   margin-bottom: 0;
 }
-@media only screen and (min-width: 30em) {
+@media (min-width: 30em) {
   blockquote {
-    margin: 2rem 2rem 2rem 3rem;
-  }
-
-  blockquote::before {
-    margin-left: -1.375rem;
+    padding-right: 5rem;
+    padding-left: 1.25rem;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  blockquote::before {
-    background-color: #AFAFAF;
-  }
-  blockquote::after {
-    background-image: url('../img/quoteblock-dark.svg');
-  }
-}
-
-img, video {
+img {
   display: block;
   max-width: 100%;
   margin: 0 0 1rem;
+  border-radius: 5px;
 }
 
 /* Tables */
 table {
   margin-bottom: 1rem;
   width: 100%;
+  border: 1px solid #e5e5e5;
   border-collapse: collapse;
 }
 td,
 th {
   padding: .25rem .5rem;
+  border: 1px solid #e5e5e5;
 }
 tbody tr:nth-child(odd) td,
 tbody tr:nth-child(odd) th {
   background-color: #f9f9f9;
-}
-
-@media (prefers-color-scheme: dark) {
-  table {
-    border-color: #202020;
-  }
-  td, th {
-    border-color: #202020;
-  }
-  tbody tr:nth-child(odd) td,
-  tbody tr:nth-child(odd) th {
-    background-color: #101010;
-  }
 }
 
 
@@ -380,8 +271,6 @@ tbody tr:nth-child(odd) th {
 .lead {
   font-size: 1.25rem;
   font-weight: 300;
-  margin-left: 1rem; /* connect to sidebar-about a*/
-  
 }
 
 
@@ -449,11 +338,10 @@ tbody tr:nth-child(odd) th {
  * page is wrapped in `.page` and is only used on the page layout.
  */
 
- .page > *:last-child,
- .posts > *:last-child,
- .post > *:last-child {
-   margin-bottom: 0;
- }
+.page,
+.post {
+  margin-bottom: 4em;
+}
 
 /* Blog post or page title */
 .page-title,
@@ -461,44 +349,17 @@ tbody tr:nth-child(odd) th {
 .post-title a {
   color: #303030;
 }
-@media print {
-  .page-title,
-  .post-title,
-  .post-title a {
-    color: #000000;
-  }
-}
-@media (prefers-color-scheme: dark) {
-  .page-title,
-  .post-title,
-  .post-title a {
-    color: #ffffff;
-  }
-}
 .page-title,
 .post-title {
-  margin-top: 0rem;
-}
-
-@media only screen and (min-width: 48em) {
-  .page-title,
-  .post-title {
-    margin-top: 2rem;
-  }
+  margin-top: 0;
 }
 
 /* Meta data line below post title */
-.post-metadata {
+.post-date {
   display: block;
   margin-top: -.5rem;
   margin-bottom: 1rem;
   color: #9a9a9a;
-}
-
-@media print {
-  .post-metadata {
-    color: #000;
-  }
 }
 
 /* Related posts */
@@ -536,59 +397,44 @@ tbody tr:nth-child(odd) th {
 
 .pagination {
   overflow: hidden; /* clearfix */
-  margin: 1rem 0 0 0;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  font-family: "PT Sans", Helvetica, Arial, sans-serif;
   color: #ccc;
   text-align: center;
-}
-
-.pagination:first-of-type {
-  margin: 0 0 1rem 0;
 }
 
 /* Pagination items can be `span`s or `a`s */
 .pagination-item {
   display: block;
   padding: 1rem;
-  background: #f8f8f8;
-  float: left;
-  width: 50%;
+  border: 1px solid #eee;
 }
-
 .pagination-item:first-child {
   margin-bottom: -1px;
 }
 
-.pagination-item:first-child {
-  margin-bottom: 0;
-  border-top-left-radius:    1rem;
-  border-bottom-left-radius: 1rem;
-}
-.pagination-item:last-child {
-  margin-left: -1px;
-  border-top-right-radius:    1rem;
-  border-bottom-right-radius: 1rem;
+/* Only provide a hover state for linked pagination items */
+a.pagination-item:hover {
+  background-color: #911a1a;
 }
 
-.theme-base .content a.pagination-item {
-  color: #000000;
-}
-
-@media (prefers-color-scheme: dark) {
-  .pagination-item {
-    background: #212121;
-  }
-
-  .theme-base .content a.pagination-item {
-    color: #ffffff;
-  }
-}
-
-@media only screen and (min-width: 48em) {
+@media (min-width: 30em) {
   .pagination {
-    margin: 2rem 0 0 0;
+    margin: 3rem 0;
   }
-
-  .pagination:first-of-type {
-    margin: 0 0 2rem 0;
+  .pagination-item {
+    float: left;
+    width: 50%;
+  }
+  .pagination-item:first-child {
+    margin-bottom: 0;
+    border-top-left-radius:    4px;
+    border-bottom-left-radius: 4px;
+  }
+  .pagination-item:last-child {
+    margin-left: -1px;
+    border-top-right-radius:    4px;
+    border-bottom-right-radius: 4px;
   }
 }

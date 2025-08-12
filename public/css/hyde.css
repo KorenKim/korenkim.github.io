@@ -1,5 +1,3 @@
-/* mostly sidebar (positioning, color, fonts, nav links, repsonsive layout adjustment)*/
-
 /*
  *  __                  __
  * /\ \                /\ \
@@ -35,15 +33,13 @@
 
 html {
   font-family: ui-rounded, Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
 }
 @media (min-width: 48em) {
   html {
     font-size: 16px;
   }
 }
-@media (min-width: 58em) {
+@media (min-width: 64em) {
   html {
     font-size: 20px;
   }
@@ -57,67 +53,214 @@ html {
  * out above content in mobile and later moves to the side with wider viewports.
  */
 
-
-
 .sidebar {
-    background-color: #f8f8f8;
-    color: #000000;
-    padding: 2rem 1rem;
-    overflow: auto;
+  padding: 2rem 1rem;
+  overflow: auto;
+}
+@media print {
+  .sidebar {
+    padding: 0rem;
+  }
 }
 @media only screen and (min-width: 48em) {
-    .sidebar {
-        position: fixed;
-        margin: 2rem;
-        padding: 0 0;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: 19rem;
-        text-align: left;
-        border-radius: 1rem;
-    }
+  .sidebar {
+    position: fixed;
+    margin: 2rem;
+    padding: 0 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 19rem;
+    text-align: left;
+    border-radius: 1rem;
+  }
 }
 
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+/* Main sidebar content (stuff that's always meant to be displayed) */
+.sidebar-main {
+  display: flex;
+  flex-direction: row;
 }
 
-div {
-    display: block;
-    unicode-bidi: isolate;
+.sidebar-about {
+  flex-grow: 1;
 }
 
+.sidebar-nav-toggle {
+  flex-basis: 20px;
+}
+
+@media only screen and (min-width: 48em) {
+  .sidebar-nav-toggle {
+    display: none;
+  }
+
+  .sidebar-nav-label {
+    display: none;
+  }
+}
+@media print {
+  .sidebar-nav-toggle {
+    display: none;
+  }
+
+  .sidebar-nav-label {
+    display: none;
+  }
+}
+
+/* Nav toggle icon */
+.sidebar-nav-label {
+  cursor: pointer;
+  display: inline-block;
+  float: right;
+  margin-right: calc(-10px + 1rem);
+  padding: 20px 0 20px 0;
+  position: relative;
+  user-select: none;
+}
+
+@media only screen and (min-width: 23.2em) {
+  .sidebar-nav-toggle {
+    flex-basis: 40px;
+  }
+
+  .sidebar-nav-label {
+    margin-right: 1rem;
+    padding: 20px 10px 20px 10px;
+  }
+}
+
+.sidebar-nav-icon {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-radius: 1rem;
+  background: #000;
+  display: block;
+  height: 3px;
+  position: relative;
+  transition: background .2s ease-out;
+  width: 20px;
+}
+
+.sidebar-nav-icon:before,
+.sidebar-nav-icon:after {
+  border-radius: 1rem;
+  background: #000;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  .sidebar-nav-icon:before,
+  .sidebar-nav-icon:after,
+  .sidebar-nav-icon {
+    background: #FFF;
+  }
+}
+
+.sidebar-nav-icon:before {
+  top: 7px;
+}
+
+.sidebar-nav-icon:after {
+  top: -7px;
+}
+
++ .sidebar-nav-icon:before {
+  top: 7px;
+}
+
+.sidebar-nav-btn:checked + .sidebar-main .sidebar-nav-icon {
+  background: transparent;
+}
+
+.sidebar-nav-btn:checked + .sidebar-main .sidebar-nav-icon:before {
+  transform: rotate(-45deg);
+}
+.sidebar-nav-btn:checked + .sidebar-main .sidebar-nav-icon:after {
+  transform: rotate(45deg);
+}
+
+.sidebar-nav-btn:checked + .sidebar-main .sidebar-nav-icon:before,
+.sidebar-nav-btn:checked + .sidebar-main .sidebar-nav-icon:after {
+  top: 0;
+}
 
 /* Sidebar links */
-.sidebar a {
-  color: rgb(215, 183, 0)
+.sidebar-about a {
+  display: inline-block;
+  margin-left: 1rem; /*make sure to connect with class lead */
 }
 
 /* About section */
-.sidebar-about h1 { /*changes the big title thing */
-  color: #fff;
+.sidebar-about h1 {
+  color: #000;
   margin-top: 0;
   font-size: 2rem;
 }
 
 /* Sidebar nav */
-.sidebar-nav {
-  margin-bottom: 1rem;
-}
 .sidebar-nav-item {
   display: block;
-  line-height: 1.75;
 }
 a.sidebar-nav-item:hover,
 a.sidebar-nav-item:focus {
   text-decoration: underline;
-
 }
-.sidebar-nav-item.active {
+.sidebar-nav-item .active {
   font-weight: bold;
+}
+
+.sidebar-nav-btn {
+  position: absolute;
+  right: 0.8rem;
+  top: 2rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 23em) {
+  .sidebar-nav-btn {
+    right: 2rem;
+  }
+}
+
+@media only screen and (min-width: 38em) {
+  .sidebar-nav-btn {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  .sidebar-nav-btn {
+    display: none;
+  }
+}
+
+.sidebar-nav-btn ~ .sidebar-nav {
+  display: none;
+}
+
+.sidebar-nav-btn:checked ~ .sidebar-nav {
+  display: block;
+}
+
+@media only screen and (min-width: 48em) {
+  .sidebar-nav-btn ~ .sidebar-nav {
+    display: block;
+  }
 }
 
 /* Sticky sidebar
@@ -126,11 +269,11 @@ a.sidebar-nav-item:focus {
  * contents to the bottom of the sidebar in tablets and up.
  */
 
-@media (min-width: 48em) {
+@media only screen and (min-width: 48em) {
   .sidebar-sticky {
     position: absolute;
     right:  1rem;
-    bottom: 1rem;
+    top:    2rem;
     left:   1rem;
   }
 }
@@ -143,22 +286,24 @@ a.sidebar-nav-item:focus {
  */
 
 .content {
-  padding-top:    4rem;
-  padding-bottom: 4rem;
+  padding-top:    1rem;
+  padding-bottom: 1rem;
 }
 
-@media (min-width: 48em) {
+@media only screen and (min-width: 48em) {
   .content {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     max-width: 38rem;
-    margin-left: 20rem;
-    margin-right: 2rem;
+    margin-left: 22rem;
+    margin-right: 1rem;
   }
 }
 
-@media (min-width: 64em) {
+@media only screen and (min-width: 64em) {
   .content {
     margin-left: 22rem;
-    margin-right: 4rem;
+    margin-right: 1rem;
   }
 }
 
@@ -169,7 +314,7 @@ a.sidebar-nav-item:focus {
  * Flip the orientation of the page by placing the `.sidebar` on the right.
  */
 
-@media (min-width: 48em) {
+@media only screen and (min-width: 48em) {
   .layout-reverse .sidebar {
     left: auto;
     right: 0;
@@ -180,15 +325,12 @@ a.sidebar-nav-item:focus {
   }
 }
 
-@media (min-width: 64em) {
+@media only screen and (min-width: 64em) {
   .layout-reverse .content {
     margin-left: 4rem;
     margin-right: 22rem;
   }
 }
-
-
-
 
 
 
@@ -201,192 +343,37 @@ a.sidebar-nav-item:focus {
 
 /* Base16 (http://chriskempson.github.io/base16/#default) */
 
-/* Red */
-.theme-base-08 .sidebar {
-  background-color: #ac4142;
+.theme-base .sidebar {
+  background-color: #f8f8f8;
+  color: #000000;
 }
-.theme-base-08 .content a,
-.theme-base-08 .related-posts li a:hover {
-  color: #ac4142;
+.theme-base .sidebar a {
+  color: #000000;
 }
-
-/* Orange */
-.theme-base-09 .sidebar {
-  background-color: #d28445;
-}
-.theme-base-09 .content a,
-.theme-base-09 .related-posts li a:hover {
-  color: #d28445;
+.theme-base .content a,
+.theme-base .related-posts li a:hover {
+  color: rgb(65,110,210);
 }
 
-/* Yellow */
-.theme-base-0a .sidebar {
-  background-color: #f4bf75;
-}
-.theme-base-0a .content a,
-.theme-base-0a .related-posts li a:hover {
-  color: #f4bf75;
+@media print {
+  .theme-base .sidebar {
+    background-color: transparent;
+  }
 }
 
-/* Green */
-.theme-base-0b .sidebar {
-  background-color: #90a959;
-}
-.theme-base-0b .content a,
-.theme-base-0b .related-posts li a:hover {
-  color: #90a959;
-}
-
-/* Cyan */
-.theme-base-0c .sidebar {
-  background-color: #75b5aa;
-}
-.theme-base-0c .content a,
-.theme-base-0c .related-posts li a:hover {
-  color: #75b5aa;
-}
-
-/* Blue */
-.theme-base-0d .sidebar {
-  background-color: #6a9fb5;
-}
-.theme-base-0d .content a,
-.theme-base-0d .related-posts li a:hover {
-  color: #6a9fb5;
-}
-
-/* Magenta */
-.theme-base-0e .sidebar {
-  background-color: #aa759f;
-}
-.theme-base-0e .content a,
-.theme-base-0e .related-posts li a:hover {
-  color: #aa759f;
-}
-
-/* Brown */
-.theme-base-0f .sidebar {
-  background-color: #8f5536;
-}
-.theme-base-0f .content a,
-.theme-base-0f .related-posts li a:hover {
-  color: #8f5536;
-}
-
-
-
-
-
-
-
-
-
-
-/* --- Custom Homepage Styles --- */
-
-/* Navigation bar at top */
-.nav {
-  background-color: #111;
-  padding: 1rem 0;
-  text-align: center;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  margin: 0;
-}
-
-.nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: inline-flex;
-  gap: 2rem;
-}
-
-.nav li {
-  display: inline;
-}
-
-.nav a {
-  color: #eee;
-  font-weight: 600;
-  font-family: 'PT Sans', sans-serif;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.nav a:hover,
-.nav a:focus {
-  color: #268bd2;
-  text-decoration: underline;
-}
-
-/* Main content pushes down to avoid nav overlap */
-main {
-  padding-top: 5rem; /* Height of fixed nav + some padding */
-  max-width: 800px;
-  margin: 0 auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-/* Projects grid */
-.projects {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-.project {
-  background-color: #1e1e1e;
-  color: #eee;
-  padding: 1.5rem 2rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.project:hover {
-  transform: translateY(-6px);
-}
-
-.pro
-
-
-/* for the post button thing */
-.post-block {
-  padding: 1rem;
-  border: 1px solid #ccc;
-  margin-bottom: 1.5rem;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
-  background-color: #222; /* match dark theme */
-  color: #eee;
-}
-
-.post-block:hover {
-  /*background-color: #333; i dont like this feature */
-}
-
-.post-title {
-  margin: 0 0 0.3rem 0;
-  font-size: 1.25rem;
-}
-
-.post-title a {
-  text-decoration: none;
-  color: #7fc1ff; /* a nice blue for links */
-}
-
-.post-title a:hover {
-  text-decoration: underline;
-}
-
-.post-date {
-  color: #999;
-  font-size: 0.9rem;
+@media (prefers-color-scheme: dark) {
+  .theme-base .sidebar {
+    background-color: #212121;
+    color: #ffffff;
+  }
+  .theme-base .sidebar-about h1 {
+    color: #ffffff;
+  }
+  .theme-base .sidebar a {
+    color: #ffffff;
+  }
+  .theme-base .content a,
+  .theme-base .related-posts li a:hover {
+    color: rgb(90,200,250);
+  }
 }
