@@ -3,7 +3,7 @@ layout: page
 title: "Album"
 permalink: /photography/album1/
 raw_links: |
-    https://drive.google.com/file/d/1-L1FJ_69ipfXywQYwDXfwAfNnqCmkH8W/view?usp=sharing
+    https://drive.google.com/file/d/1-L1FJ_69ipfXywQYwDXfwAfNnqCmkH8W/view?usp=sharing, cool
     https://drive.google.com/file/d/1-gsnHDpX3mEAPeD_9AjPnhfmqG264Be0/view?usp=sharing
     https://drive.google.com/file/d/109rMpwYxdAjF02lFMFh7NccnmLCiW0Eh/view?usp=sharing
     https://drive.google.com/file/d/10EUXihMppjdCdaVKBQ7JGHDZqxtHs6I3/view?usp=sharing
@@ -16,57 +16,83 @@ raw_links: |
     https://drive.google.com/file/d/12l196TF8cVUiFFxGNnYgE-EfAvLC9qZ3/view?usp=sharing
     https://drive.google.com/file/d/12zSORm6TFnMcJh2RzIb1piSxubKz2gwK/view?usp=sharing
     https://drive.google.com/file/d/133rrkN06yto9eo8SqsFlwH0GROMnmaH2/view?usp=sharing
-
 ---
 
 <link rel="stylesheet" href="/public/css/gallery.css">
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 
 <div class="page">
-
-  <!-- Gallery -->
-  <div id="gallery" class="gallery"></div>
-
+  <div id="gallery" class="gallery">
+    <div class="gallery-sizer"></div>
+  </div>
 </div>
 
-
 <script>
-  const rawLinks = `{{ page.raw_links }}`.trim();
+const rawLinks = `{{ page.raw_links }}`.trim();
 
-  const images = rawLinks.split("\n").map(line => {
-    // Remove any leading numbers and spaces
-    line = line.replace(/^\d+\s+/, '');
-    
-    const [url, caption] = line.split(",").map(s => s.trim());
-    const fileIdMatch = url.match(/\/d\/(.*?)\//);
-    const directUrl = fileIdMatch ? `https://drive.google.com/thumbnail?id=${fileIdMatch[1]}` : url;
+const images = rawLinks.split("\n").map(line => {
+  line = line.trim();
+  if (!line) return null;
 
-    return { url: directUrl, caption };
+  const [urlPart, captionPart] = line.split(",").map(s => s.trim());
+  const fileIdMatch = urlPart.match(/\/d\/(.*?)\//);
+  if (!fileIdMatch) return null;
+  const fileId = fileIdMatch[1];
+
+  return {
+    thumbUrl: `https://drive.google.com/thumbnail?id=${fileId}&sz=w400`,
+    fullUrl: `https://drive.google.com/uc?export=view&id=${fileId}`,
+    caption: captionPart || ""
+  };
+}).filter(Boolean);
+
+const galleryDiv = document.getElementById("gallery");
+
+// Create gallery items with fixed height to prevent jumping
+images.forEach(img => {
+  const link = document.createElement("a");
+  link.href = img.fullUrl;
+  link.target = "_blank";
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "gallery-item";
+
+  const image = document.createElement("img");
+  image.src = img.thumbUrl;
+  image.alt = img.caption;
+  image.loading = "lazy";
+  //image.style.height = "200px"; //crops height
+  image.style.width = "100%";
+  image.style.objectFit = "contain";
+
+  const caption = document.createElement("p");
+  caption.innerText = img.caption;
+
+  wrapper.appendChild(image);
+  wrapper.appendChild(caption);
+  link.appendChild(wrapper);
+  galleryDiv.appendChild(link);
+});
+
+// Wait for all images to load before initializing Masonry
+imagesLoaded(galleryDiv, () => {
+  const msnry = new Masonry(galleryDiv, {
+    itemSelector: '.gallery-item',
+    columnWidth: '.gallery-sizer',
+    gutter: 15,
+    percentPosition: true,
+    fitWidth: true
   });
 
-  const galleryDiv = document.getElementById("gallery");
-
-  images.forEach(img => {
-    const link = document.createElement("a");
-    link.href = img.url;
-    link.target = "_blank";
-
-    const image = document.createElement("img");
-    image.src = img.url;
-    image.alt = img.caption;
-    image.loading = "lazy";
-
-    const caption = document.createElement("p");
-    caption.innerText = img.caption;
-
-    const wrapper = document.createElement("div");
-    wrapper.className = "gallery-item";
-    wrapper.appendChild(image);
-    wrapper.appendChild(caption);
-
-    link.appendChild(wrapper);
-    galleryDiv.appendChild(link);
+  // Staggered fade-in
+  const items = document.querySelectorAll('.gallery-item');
+  items.forEach((item, i) => {
+    setTimeout(() => item.classList.add('loaded'), i * 100);
   });
+});
 </script>
+
 
 
 

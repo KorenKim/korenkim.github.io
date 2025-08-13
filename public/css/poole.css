@@ -407,7 +407,7 @@ tbody tr:nth-child(odd) th {
  */
 
 .container {
-  max-width: 38rem;
+  max-width: 100%;
   padding-left:  1rem;
   padding-right: 1rem;
   margin-left:  auto;
@@ -448,6 +448,28 @@ tbody tr:nth-child(odd) th {
  * Each post is wrapped in `.post` and is used on default and post layouts. Each
  * page is wrapped in `.page` and is only used on the page layout.
  */
+
+/*sets page size */
+.page {
+  max-width: 100%;   /* override the 38rem container */
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin: 0 auto;
+}
+
+.page.container {
+  max-width: 100% !important; /* ignore 38rem */
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 1200px) {
+  .page.container {
+    max-width: 1400px; /* adjust as needed */
+  }
+}
 
  .page > *:last-child,
  .posts > *:last-child,
