@@ -3,32 +3,21 @@ layout: page
 title: "Album"
 permalink: /photography/album1/
 raw_links: |
-  https://drive.google.com/file/d/FILE_ID1/view?usp=sharing, Caption 1
-  https://drive.google.com/file/d/FILE_ID2/view?usp=sharing, Caption 2
-  https://drive.google.com/file/d/FILE_ID3/view?usp=sharing, Caption 3
+    https://drive.google.com/file/d/1-L1FJ_69ipfXywQYwDXfwAfNnqCmkH8W/view?usp=sharing
+    https://drive.google.com/file/d/1-gsnHDpX3mEAPeD_9AjPnhfmqG264Be0/view?usp=sharing
+    https://drive.google.com/file/d/109rMpwYxdAjF02lFMFh7NccnmLCiW0Eh/view?usp=sharing
+    https://drive.google.com/file/d/10EUXihMppjdCdaVKBQ7JGHDZqxtHs6I3/view?usp=sharing
+    https://drive.google.com/file/d/10pj_2v6FUI9WB1B2JYL3brfuM61X33Hk/view?usp=sharing
+    https://drive.google.com/file/d/115-xXRZ5lcqsqMPGhq5fhPcMk1-pKj_P/view?usp=sharing
+    https://drive.google.com/file/d/11zBVt04rzj4WxCv-XDkqRYkERMYb_n3V/view?usp=sharing
+    https://drive.google.com/file/d/12BFZ0ZxgzjrKZXWPco5ammYyshSy_0Wz/view?usp=sharing
+    https://drive.google.com/file/d/12EgPOGV-Vo8oTF_V-cy8XNjkIi48tRHo/view?usp=sharing
+    https://drive.google.com/file/d/12VuCrMyCpvFvEPEvViptKBI76g19Hj_4/view?usp=sharing
+    https://drive.google.com/file/d/12l196TF8cVUiFFxGNnYgE-EfAvLC9qZ3/view?usp=sharing
+    https://drive.google.com/file/d/12zSORm6TFnMcJh2RzIb1piSxubKz2gwK/view?usp=sharing
+    https://drive.google.com/file/d/133rrkN06yto9eo8SqsFlwH0GROMnmaH2/view?usp=sharing
+
 ---
-
-<!-- USE THIS IN CONSOLE TO RETURN MULTIPLE LINES RATHER THAN A LONG LINE
-const longLine = "INSERT-LINKS-HERE";
-const items = longLine.split(", ");
-console.log(items);
-
-
-// Paste your long single line here
-const longLine = "https://drive.google.com/file/d/1-L1FJ_69ipfXywQYwDXfwAfNnqCmkH8W/view?usp=sharing, https://drive.google.com/file/d/1-gsnHDpX3mEAPeD_9AjPnhfmqG264Be0/view?usp=sharing, https://drive.google.com/file/d/109rMpwYxdAjF02lFMFh7NccnmLCiW0Eh/view?usp=sharing";
-
-// Split into array (handles newlines and spaces)
-const items = longLine.trim().split(/\s*,\s*/);
-
-// Convert to objects for gallery
-const galleryArray = items.map(url => {
-  // Optional: if you want captions, add manually here like url.split("|")[1] or leave empty
-  return `{ url: "${url}", caption: "" }`;
-});
-
-// Print multi-line array ready to paste
-console.log(galleryArray.join(",\n"));
--->
 
 <link rel="stylesheet" href="/public/css/gallery.css">
 
@@ -39,37 +28,237 @@ console.log(galleryArray.join(",\n"));
 
 </div>
 
+
 <script>
-const rawLinks = `{{ page.raw_links }}`.trim();
+  const rawLinks = `{{ page.raw_links }}`.trim();
 
-const images = rawLinks.split("\n").map(line => {
-  const [url, caption] = line.split(",").map(s => s.trim());
-  const fileIdMatch = url.match(/\/d\/(.*?)\//);
-  const directUrl = fileIdMatch ? `https://drive.google.com/uc?export=view&id=${fileIdMatch[1]}` : url;
-  return { url: directUrl, caption };
-});
+  const images = rawLinks.split("\n").map(line => {
+    // Remove any leading numbers and spaces
+    line = line.replace(/^\d+\s+/, '');
+    
+    const [url, caption] = line.split(",").map(s => s.trim());
+    const fileIdMatch = url.match(/\/d\/(.*?)\//);
+    const directUrl = fileIdMatch ? `https://drive.google.com/thumbnail?id=${fileIdMatch[1]}` : url;
 
-const galleryDiv = document.getElementById("gallery");
+    return { url: directUrl, caption };
+  });
 
-images.forEach(img => {
-  const link = document.createElement("a");
-  link.href = img.url;
-  link.target = "_blank";
+  const galleryDiv = document.getElementById("gallery");
 
-  const image = document.createElement("img");
-  image.src = img.url;
-  image.alt = img.caption;
-  image.loading = "lazy";
+  images.forEach(img => {
+    const link = document.createElement("a");
+    link.href = img.url;
+    link.target = "_blank";
 
-  const caption = document.createElement("p");
-  caption.innerText = img.caption;
+    const image = document.createElement("img");
+    image.src = img.url;
+    image.alt = img.caption;
+    image.loading = "lazy";
 
-  const wrapper = document.createElement("div");
-  wrapper.className = "gallery-item";
-  wrapper.appendChild(image);
-  wrapper.appendChild(caption);
+    const caption = document.createElement("p");
+    caption.innerText = img.caption;
 
-  link.appendChild(wrapper);
-  galleryDiv.appendChild(link);
-});
+    const wrapper = document.createElement("div");
+    wrapper.className = "gallery-item";
+    wrapper.appendChild(image);
+    wrapper.appendChild(caption);
+
+    link.appendChild(wrapper);
+    galleryDiv.appendChild(link);
+  });
 </script>
+
+
+
+<!-- make sure the raw_links are double indented-->
+<!-- add caption to images by adding ", caption" after url-->
+
+<!-- USE THIS IN CONSOLE TO RETURN MULTIPLE LINES RATHER THAN A LONG LINE
+const longDriveLine = "PASTE-HERE"; // paste all links here
+// Split by commas and remove extra spaces
+const driveUrls = longDriveLine.split(/\s*,\s*/);
+// Join URLs with newline characters
+const cleanOutput = driveUrls.join("\n");
+// Copy to clipboard (works in browser console)
+copy(cleanOutput);
+// Optional: log to console
+console.log(cleanOutput);
+-->
+
+
+<!--
+    https://drive.google.com/file/d/13ThNrNT8i3wtdt6nE4eKV-t4-B_Dnq5d/view?usp=sharing
+    https://drive.google.com/file/d/1413M1FbSt2mEbzKK9_rhzsPUiN0CWeV4/view?usp=sharing
+    https://drive.google.com/file/d/1449Y0sB_VE0ekWUdu6olv_Z0AtUHzzTp/view?usp=sharing
+    https://drive.google.com/file/d/14aOITsjETijRls-SARmNtZLdYjfwSKK8/view?usp=sharing
+    https://drive.google.com/file/d/14z0qXwIrYiHP1hWFX6_oPew2cpbHuy_U/view?usp=sharing
+    https://drive.google.com/file/d/15H50DxuDFmtASGrox2YJ8fXRxFoSkZh-/view?usp=sharing
+    https://drive.google.com/file/d/15X_dQppHgAyyTfJCymPY6bY8Wb9mRwCQ/view?usp=sharing
+    https://drive.google.com/file/d/15xeHzcini9rpSWLM5SDXOJZTT2hvjmiF/view?usp=sharing
+    https://drive.google.com/file/d/16GYVYpEKzb4v-n_In1AVJsxfe6aHOHNv/view?usp=sharing
+    https://drive.google.com/file/d/16NVZEOOyKnvsmF8YsWIOTZqVD8PRC6Gf/view?usp=sharing
+    https://drive.google.com/file/d/16h33JlzsJn329oeNKMBkEiZV4bwraC_w/view?usp=sharing
+    https://drive.google.com/file/d/1711jTBNnS4mKKnkCoMebFvzSJVtadzX7/view?usp=sharing
+    https://drive.google.com/file/d/1811RIf6vIGCLn0l-Foqqcvoq5pnzens7/view?usp=sharing
+    https://drive.google.com/file/d/186c-V-vE0aBmc4_b2SC-Y8iem0uqO5kg/view?usp=sharing
+    https://drive.google.com/file/d/19AvCB79Gf7u2z1pu7GyKLPQbOQ1p_mVx/view?usp=sharing
+    https://drive.google.com/file/d/19jhqBpXfvh3DRe-4r1kZJpTNw6AFzDXy/view?usp=sharing
+    https://drive.google.com/file/d/1AYU2uaoXaSNY2I0NbZ8poUxMwF-nLfKw/view?usp=sharing
+    https://drive.google.com/file/d/1BLxFEc97KaTDBt4-yWvC89zelmG11OAw/view?usp=sharing
+    https://drive.google.com/file/d/1BZ9Dj7JDFpKcWoIIk1BcU89iEk1gVP34/view?usp=sharing
+    https://drive.google.com/file/d/1BdajZMPOOko53e4jLmLnkyO_s7wE2FT3/view?usp=sharing
+    https://drive.google.com/file/d/1BoG1O8re9hGnJ9pLd0VVKcSdh-4ltCdB/view?usp=sharing
+    https://drive.google.com/file/d/1Bsgj2im5j1cw3bk44P-emQZcxEJtocm4/view?usp=sharing
+    https://drive.google.com/file/d/1CZCMulr-ra_Ga6ppZY_E4pzluWIrAr__/view?usp=sharing
+    https://drive.google.com/file/d/1D4ImFvNdcPcU6kF2y9gqjFVnj4xuyMSD/view?usp=sharing
+    https://drive.google.com/file/d/1DB2hzJWrEG_NKqHunjWRdYpUCCUjJADS/view?usp=sharing
+    https://drive.google.com/file/d/1DB5-9Qp3SdLpIaSRQDRMRUqitOB_aqJ5/view?usp=sharing
+    https://drive.google.com/file/d/1DLURRSo_Gls8e5bHt6b0GjSOKCvub44N/view?usp=sharing
+    https://drive.google.com/file/d/1DiclfbGG8YEJbnvanbg3l-nihDWQgDwa/view?usp=sharing
+    https://drive.google.com/file/d/1E7sG32rnuq_VFFezFItkRTCXjVDGQG8X/view?usp=sharing
+    https://drive.google.com/file/d/1EK3OhhryHRryHTyIgL3myNqsHqzpQ3Cq/view?usp=sharing
+    https://drive.google.com/file/d/1EVG-4GXW8t_HSXkWtj3zgo8UJWagdk4r/view?usp=sharing
+    https://drive.google.com/file/d/1EwHdHKiOM92GEdr9v2WCUWpJTV9qPGmt/view?usp=sharing
+    https://drive.google.com/file/d/1EzXVolSRv0FgLdeFi2i3-ojsK8DGvRTh/view?usp=sharing
+    https://drive.google.com/file/d/1FdkPKEcDmMiI1xy2ZN7RBhvMFRfTYJVa/view?usp=sharing
+    https://drive.google.com/file/d/1FnR1INrizEfW21fbJNhmMNINtTGKGcQe/view?usp=sharing
+    https://drive.google.com/file/d/1G-2SR3_lEiuUdRK_dpFBZyPopHiXmDbd/view?usp=sharing
+    https://drive.google.com/file/d/1GJIkdWdEykBNr_1UoXxRJP1RhONg9Nm0/view?usp=sharing
+    https://drive.google.com/file/d/1GPXOkHmjvvvU2KeYIGfUae99Cme1_9_j/view?usp=sharing
+    https://drive.google.com/file/d/1GZzp_ya0b5OmATSKiLB-pRfO2VyANb0Y/view?usp=sharing
+    https://drive.google.com/file/d/1G_mokf6iY3jmQ7OBWynH1OJVEUQRYZ1R/view?usp=sharing
+    https://drive.google.com/file/d/1H-txH9T465-Msscat4VIriUNHBiZ33SX/view?usp=sharing
+    https://drive.google.com/file/d/1HZLmJv8ZqIJkcl9j6FuknsAdAZLXdn5V/view?usp=sharing
+    https://drive.google.com/file/d/1HZvkS8YTz0Fs4HtCk_qNNhGQjuKFNfbL/view?usp=sharing
+    https://drive.google.com/file/d/1HzXPo6P30HCHgcbG7sc3r9qLQPuIHUdi/view?usp=sharing
+    https://drive.google.com/file/d/1IZ1fyyd6o_V-QVkInhYcqDI74GjovDdc/view?usp=sharing
+    https://drive.google.com/file/d/1Jj_54EbIk7YafAw4ptS1kb3hfgNSzUdz/view?usp=sharing
+    https://drive.google.com/file/d/1JpmxzfhyB3WVJTY01hn6FxYxCZJkK3ov/view?usp=sharing
+    https://drive.google.com/file/d/1KBAIO-CsooubWzD0wjYyVzwrgoU5Zgt6/view?usp=sharing
+    https://drive.google.com/file/d/1KQsjrUyToHBoD5VQPugIUpRiLiEbrSGN/view?usp=sharing
+    https://drive.google.com/file/d/1KqOqPucnO5o89KTyCv4AS_iHzPgwTe_F/view?usp=sharing
+    https://drive.google.com/file/d/1L4DGwF7R5mS_FhHYE53-fAzC6oZpHNE3/view?usp=sharing
+    https://drive.google.com/file/d/1LDSV_FE1ZsWGYiP2XlVwgOsVx-HR2WI3/view?usp=sharing
+    https://drive.google.com/file/d/1LScmCw3ipXqvYPosFx4G8AUK20pIAiNU/view?usp=sharing
+    https://drive.google.com/file/d/1M8I5lxH5CgqiK577OF2LaQUh4wPRcSSb/view?usp=sharing
+    https://drive.google.com/file/d/1ME9d5ztZmtYfyLbGi82FoGBFNkDj06n7/view?usp=sharing
+    https://drive.google.com/file/d/1MP9MYl1rOfnHhng761rs-OhFMiTtQJTj/view?usp=sharing
+    https://drive.google.com/file/d/1MdmY7mVE-2LKMt764UlUEByzB-eTP_wi/view?usp=sharing
+    https://drive.google.com/file/d/1MzGXEdErBZSpBiVfguZtRfG7cXT8f6Ec/view?usp=sharing
+    https://drive.google.com/file/d/1NDqMVc08Ox4pFCplOKu85t2I37rJXfKY/view?usp=sharing
+    https://drive.google.com/file/d/1NUlLmF-mJ6fo4M-u1HpqVg-kYsDTK7-h/view?usp=sharing
+    https://drive.google.com/file/d/1Nacr9LTjloXX5g3BwnGIwCSxEezidZ2w/view?usp=sharing
+    https://drive.google.com/file/d/1OAfPwl8InXfdCP-_mz8rqwX7BiG7yxP3/view?usp=sharing
+    https://drive.google.com/file/d/1OLs7TBXOz3FyHQ76hFK71OI_rSHO5ABe/view?usp=sharing
+    https://drive.google.com/file/d/1OR06ZzKKxT51qZ9WisoGIKfP7VVzE1Em/view?usp=sharing
+    https://drive.google.com/file/d/1PToqXX9rTtFNR8DlprjeJhqphjA9HMM5/view?usp=sharing
+    https://drive.google.com/file/d/1Pn7yCun8S_oYz_1TzlbeSpalb-bF_wrX/view?usp=sharing
+    https://drive.google.com/file/d/1PtaxGhDYK2tlf0qf7FWEYX6oCZnHuTUD/view?usp=sharing
+    https://drive.google.com/file/d/1RKI7tT8mNPUZ5JOaiR2qjeX0EFzI3YDp/view?usp=sharing
+    https://drive.google.com/file/d/1RXIQhhmA0wLQUS-kkPcInfx0g7s3_in7/view?usp=sharing
+    https://drive.google.com/file/d/1Rrqgr1ny-7VNFctskgNL7IvXkIDiJDkg/view?usp=sharing
+    https://drive.google.com/file/d/1S5wJAn66qTGqBRTcSDnEvLAwJll--Muo/view?usp=sharing
+    https://drive.google.com/file/d/1SGSGTJE7uATofJrnp2M-wVo89p4EbWoP/view?usp=sharing
+    https://drive.google.com/file/d/1SK5wJu6EQyhnxwOM1cPILTaSjHhxQcUe/view?usp=sharing
+    https://drive.google.com/file/d/1SP0tWMWv4LYCyA-8ZOhsIm_p_eGgPRbR/view?usp=sharing
+    https://drive.google.com/file/d/1TCm9V-rVuUkcCw9yC47OKlzufyjBMjWg/view?usp=sharing
+    https://drive.google.com/file/d/1TMA5-Kk6kI8eKwn7le1tx7miJwjAldaK/view?usp=sharing
+    https://drive.google.com/file/d/1TTm8VpjTSWdEOPf1S11FERosj7vjrq3T/view?usp=sharing
+    https://drive.google.com/file/d/1TXKfsbRNJi71WWXbtqqQhwSTNqu19-Kt/view?usp=sharing
+    https://drive.google.com/file/d/1TiytLnSKlo2RMts-KV9_iM_GR5ymKj3_/view?usp=sharing
+    https://drive.google.com/file/d/1Ty5q5P1Kkmj8RAGbZqToLTrP2xj0br8r/view?usp=sharing
+    https://drive.google.com/file/d/1UUOTJzhLIW6m9ac5Tqsm2q9lqNJHLT1V/view?usp=sharing
+    https://drive.google.com/file/d/1Uav-1aE6N07hlio5cRQR_icYggbTcsLj/view?usp=sharing
+    https://drive.google.com/file/d/1VSEY7-BNvG0S3ozXmAMHjX_EL3xO15jd/view?usp=sharing
+    https://drive.google.com/file/d/1VcFPBzmeRruiu_h4ky_yUoV7TnHC49XY/view?usp=sharing
+    https://drive.google.com/file/d/1VdNJ0SvccVm5LqsFMXNQ6Ua5o-BShspr/view?usp=sharing
+    https://drive.google.com/file/d/1Vn5fh6ps8rdoW3uzs0w3USro7EutI9Ih/view?usp=sharing
+    https://drive.google.com/file/d/1W3PMpbZw6jwdMQwOuaSe49STIATFuuwq/view?usp=sharing
+    https://drive.google.com/file/d/1WvkZifNYKMx1d65NM6dK48EtD843Ffl1/view?usp=sharing
+    https://drive.google.com/file/d/1XJmy1Jc9fwCGBEig8F-Js-d64z3BKGFW/view?usp=sharing
+    https://drive.google.com/file/d/1XWGmG7jilupDmcbLt-86t5Rrjh23qFkN/view?usp=sharing
+    https://drive.google.com/file/d/1XoewsCvXJpvj6MNUBWW9Q-M40eXL_acb/view?usp=sharing
+    https://drive.google.com/file/d/1YJJ1yEoOYzRnx7zxkJRi9WTHUYa-_w8R/view?usp=sharing
+    https://drive.google.com/file/d/1YR12dzn6GI7Fo5cGOldKcnLYIpfsFYR0/view?usp=sharing
+    https://drive.google.com/file/d/1YVPB2qt3kvtYaUD6pCciKWQC47CypPxr/view?usp=sharing
+    https://drive.google.com/file/d/1YXXXQuCY1rO1sqR3rwo3VyOE9IOUz7nF/view?usp=sharing
+    https://drive.google.com/file/d/1YlYXUQYsYHyKyjWYea4elVu-982BKxbj/view?usp=sharing
+    https://drive.google.com/file/d/1Z1BJ0nIAUoFmI59IIjwYtnO01nOedE1V/view?usp=sharing
+    https://drive.google.com/file/d/1ZO2ZsHuvKyDpSfxcOifxE78MU81J_855/view?usp=sharing
+    https://drive.google.com/file/d/1ZZBq06OP56xKnkpnxu1vfGGjj2IZoSLi/view?usp=sharing
+    https://drive.google.com/file/d/1Z_aIjrbaFfiX6SYXJP5PULV3vB4N_WHg/view?usp=sharing
+    https://drive.google.com/file/d/1ZsOD2_eqvTTTlViibRPbkbBSXAZ7Skhl/view?usp=sharing
+    https://drive.google.com/file/d/1_ZizqytAApyP0XwwK0gGR61iwcLw_ISl/view?usp=sharing
+    https://drive.google.com/file/d/1_xEONGox6y9Slgz6UVcNiN2ApVbwgo2q/view?usp=sharing
+    https://drive.google.com/file/d/1a8KhqNGfPY6QKkWDSK444JN8TRLA3fuc/view?usp=sharing
+    https://drive.google.com/file/d/1a9e_5_gtTWVZP9-vWhtqHvE5KhbQfbtz/view?usp=sharing
+    https://drive.google.com/file/d/1aszjGsUmpyOd9nPjdjk3s0YimyC7djBJ/view?usp=sharing
+    https://drive.google.com/file/d/1b04WU2i2sJ96zzCtRbJfYDE3XSzbPtf6/view?usp=sharing
+    https://drive.google.com/file/d/1bK6tMxyR9BHyHy0-0fFI9rgY8plXipSO/view?usp=sharing
+    https://drive.google.com/file/d/1bOcqG_7_EEq1BfYx15neiLnGj6ziHb4g/view?usp=sharing
+    https://drive.google.com/file/d/1byLNMnmoxLsry2s2uym8UNRfRL8QTM8T/view?usp=sharing
+    https://drive.google.com/file/d/1cMoKMO_SQT19lDZvPwkGM4kjO2JAH_RT/view?usp=sharing
+    https://drive.google.com/file/d/1dNi5JT3s5n7hqjIplV3wvu5eJ7V2nRJf/view?usp=sharing
+    https://drive.google.com/file/d/1dVzH8IDUf15OgZVEjzJ-q5-qvJdB8ssC/view?usp=sharing
+    https://drive.google.com/file/d/1dYTeUhvPa0Mk2jjamuE4E6dRSC1BNafm/view?usp=sharing
+    https://drive.google.com/file/d/1dtQuBM6xZBTqCi4Ih-gWzHEnsHKEz32r/view?usp=sharing
+    https://drive.google.com/file/d/1efVoZeItjUZfXKjUT_98u-dzFG8qLGOT/view?usp=sharing
+    https://drive.google.com/file/d/1eq_0whwun70Qu0v7QYB5s8Xx87g2QaHo/view?usp=sharing
+    https://drive.google.com/file/d/1fHZ56b7ok9BrMr4xFoqqvQ0aKNFfmcJy/view?usp=sharing
+    https://drive.google.com/file/d/1g5kegQ64xaK5aDcp7Ow6HFWk9fdtWv1w/view?usp=sharing
+    https://drive.google.com/file/d/1gdMJ3vxcV-DRv1e7OLH0Y7e9tNNsi4hn/view?usp=sharing
+    https://drive.google.com/file/d/1h7UInzz551DNLFHTlFOgVgwl8Xc0ntqU/view?usp=sharing
+    https://drive.google.com/file/d/1hGHlv_mkkuhwWZmtlsCXpUDOePXB5RCC/view?usp=sharing
+    https://drive.google.com/file/d/1hJeIpwbNVS2wdk-c6c49HWkGjzAZZor8/view?usp=sharing
+    https://drive.google.com/file/d/1i5LPZ79mFtDB3-LeVps-vlIgHkyrn4Jk/view?usp=sharing
+    https://drive.google.com/file/d/1i60Tp4oTFRr7nFlLiBy45ZpUQljacHg3/view?usp=sharing
+    https://drive.google.com/file/d/1i8KYutB7mflvRVFghvqHwr0YpBERAuYy/view?usp=sharing
+    https://drive.google.com/file/d/1iv0TQI2qYlTVleVP-JaFaME0pPGal9px/view?usp=sharing
+    https://drive.google.com/file/d/1kDAZ6YveF6racFMFOEkMkLAEMTfpFnWT/view?usp=sharing
+    https://drive.google.com/file/d/1kRhp0jH91myTBSFyK4eKZmdyiZXMYFC2/view?usp=sharing
+    https://drive.google.com/file/d/1khV8HuRMV3idIhxfKGGarxrYnbbz7pl7/view?usp=sharing
+    https://drive.google.com/file/d/1kkx4gQYtPsg6-z1pUh5Z8tx_7gz5AvKe/view?usp=sharing
+    https://drive.google.com/file/d/1lEG8tHrw1BR_Rb1b5CndO8CR7dAnwmVN/view?usp=sharing
+    https://drive.google.com/file/d/1ly4bPb2DQSVph_C_0n7n3ojCukocIg4C/view?usp=sharing
+    https://drive.google.com/file/d/1m5DImCAQ6jgreHru4j6MEmhfD0Ccrcdw/view?usp=sharing
+    https://drive.google.com/file/d/1mWtwl2aWyw2sr-Q9hsf58Vj0bBMkTWRz/view?usp=sharing
+    https://drive.google.com/file/d/1mWzNgfUwS9QjCRsL8FTJCyb3A84cTxPX/view?usp=sharing
+    https://drive.google.com/file/d/1mwapcAt8E9LfAM0-ac41VrCRwWp7jZAZ/view?usp=sharing
+    https://drive.google.com/file/d/1mxjoBoMIKed1Thu-I_mZDALhzHMZifjM/view?usp=sharing
+    https://drive.google.com/file/d/1nN0WWsRPU8q_xtxHLYhe1Bb13Jb_DQ5C/view?usp=sharing
+    https://drive.google.com/file/d/1njgLlF-lTqkMFSvyBzTGblCOL9F0pzvZ/view?usp=sharing
+    https://drive.google.com/file/d/1npOFVhe6ABSpAgWv96-z4Dk-I4yM40QN/view?usp=sharing
+    https://drive.google.com/file/d/1oUiyJRwUO-RO6Qy6T8tl6Xee7ZPUObDy/view?usp=sharing
+    https://drive.google.com/file/d/1oh2k8-YzxEcJdy38KaGcq_5a9OGpTR9m/view?usp=sharing
+    https://drive.google.com/file/d/1orXPN8KPl25g2RL3qom-QxJdwuZyTvCY/view?usp=sharing
+    https://drive.google.com/file/d/1p4XmraGBtqbE-h07wEw4xfKBk5IbYlOG/view?usp=sharing
+    https://drive.google.com/file/d/1pmwIqKQVGbtyYyypenbv98Q3yTgBVIMK/view?usp=sharing
+    https://drive.google.com/file/d/1pyZmpCKevTnfGvibtPaeScMqDq6tAZBN/view?usp=sharing
+    https://drive.google.com/file/d/1qTJyc_as9rlPKumuUyq8B3NxlWQ9Ba08/view?usp=sharing
+    https://drive.google.com/file/d/1qWZ9vtaPzX4PAIiFJ5zrjspWxRsP_Mnm/view?usp=sharing
+    https://drive.google.com/file/d/1rXO1U49RmEGGhDj-v2nhkUs6IrdIsPrj/view?usp=sharing
+    https://drive.google.com/file/d/1s8kX3mIgLE0zA4PXB70OVj1vJFK1Af3d/view?usp=sharing
+    https://drive.google.com/file/d/1sKw9aoJxykVi28rqFplZ8u3ROrzithQA/view?usp=sharing
+    https://drive.google.com/file/d/1sNo6YI7x8Onc-cjvsDaalHsmNhtS1zjE/view?usp=sharing
+    https://drive.google.com/file/d/1sqRnGTBymot1PvmwujurluKyfqXKKIbM/view?usp=sharing
+    https://drive.google.com/file/d/1toq-0e09bvDRJ_dk-WffpZpBlSF9PwmY/view?usp=sharing
+    https://drive.google.com/file/d/1txoUfge0ECp_zUJ-Y_gw3GGrSfkPJXfa/view?usp=sharing
+    https://drive.google.com/file/d/1u-Wc0pCwSuMPxVLjrPdXrlVQbmxST1ON/view?usp=sharing
+    https://drive.google.com/file/d/1u0NE9IrrC8cLOUKSg5aKTWm2Xvat8UnF/view?usp=sharing
+    https://drive.google.com/file/d/1u4oZe9t5aISfvAXTZe4Z_kqKWmOsOOo6/view?usp=sharing
+    https://drive.google.com/file/d/1uYSRgP94P3o96M67Z7-RsoWrIOBtgQCd/view?usp=sharing
+    https://drive.google.com/file/d/1ueLW6hozfVBfhKOpRv5YWJyS3n_2pHrl/view?usp=sharing
+    https://drive.google.com/file/d/1v1JkqTSI7GBhC-JuZSCyfVt6nid1rJFo/view?usp=sharing
+    https://drive.google.com/file/d/1v4L-mm0ILhZFckN4AnVznNhhTVv1P_Q8/view?usp=sharing
+    https://drive.google.com/file/d/1vCW8MZQ89gZ5Pl0zXH1Y1w8ERUrT3Xsj/view?usp=sharing
+    https://drive.google.com/file/d/1vHa2sSeFoTW4Ie0GtC82xDu9P82EecVX/view?usp=sharing
+    https://drive.google.com/file/d/1vihu1daxaghPo1ET60LcOd0ONA_qsIJ2/view?usp=sharing
+    https://drive.google.com/file/d/1xJ0sYs3tvqoRVI3WMMASg0Q-jh8Nch6Z/view?usp=sharing
+    https://drive.google.com/file/d/1xO18rEXXFZe2MAm6UFKq3Z7audoCGHXw/view?usp=sharing
+    https://drive.google.com/file/d/1x_rofehuxitlrsC_vUPs7VTZH_JUjc6h/view?usp=sharing
+    https://drive.google.com/file/d/1y3UtTlGDYDgEGkhvPjUXzaV4LXIaY-lA/view?usp=sharing
+    https://drive.google.com/file/d/1yQZDMmnWYKX8C--IuEUBxfWVpp2TkW9p/view?usp=sharing
+    https://drive.google.com/file/d/1yasQF8EBe7SNpol-3lXUgNT7YlZgi8ZP/view?usp=sharing
+    https://drive.google.com/file/d/1yocH2kktCbPlBv3ctjVtxVBlEQEnIDn9/view?usp=sharing
+    https://drive.google.com/file/d/1zQcTwPHSf3Qmo26ox3Pu3hAZrvnAZqA8/view?usp=sharing
+-->
