@@ -1,7 +1,5 @@
-
 .gallery {
   width: 100%;
-  max-width: 1000px; /* or whatever fits your layout */
   margin: 0 auto;
 }
 
