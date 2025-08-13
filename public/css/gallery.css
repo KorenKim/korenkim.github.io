@@ -8,6 +8,7 @@
 .gallery-sizer {
   /*width: 200px;/* base column width */
   display: inline-block;
+  width: 200px; /* base column width for desktop */
   /*width: 48%; /* responsive: 2 per row on small screens */
 }
 
@@ -17,6 +18,7 @@
   text-align: center;
   opacity: 0;
   transition: opacity 0.5s ease, transform 0.3s ease;
+  box-sizing: border-box; /* include padding/margin in width */
 }
 
 .gallery-item img {
