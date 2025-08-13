@@ -1,0 +1,40 @@
+---
+layout: page
+title: "Photography"
+permalink: /photography/
+---
+
+<div class="page">
+
+  <!-- Password Form -->
+  <div id="passwordForm">
+    <h2>Enter Password to Access Photography</h2>
+    <input type="password" id="pwdInput" placeholder="Password">
+    <button id="submitBtn">Submit</button>
+    <p id="error" style="color:red;"></p>
+  </div>
+
+  <!-- Subpage links (hidden until password correct) -->
+  <div id="subpages" style="display:none;">
+    <h2>Albums</h2>
+    <ul>
+      <li><a href="/photography/album1/" target="_blank">Album 1</a></li>
+      <li><a href="/photography/album2/" target="_blank">Album 2</a></li>
+      <li><a href="/photography/album3/" target="_blank">Album 3</a></li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+const PASSWORD = "MontrealChipmunks#1";
+document.getElementById("submitBtn").onclick = () => {
+  const input = document.getElementById("pwdInput").value;
+  if(input === PASSWORD) {
+    document.getElementById("passwordForm").style.display = "none";
+    document.getElementById("subpages").style.display = "block";
+  } else {
+    document.getElementById("error").innerText = "Incorrect password, try again.";
+  }
+};
+</script>

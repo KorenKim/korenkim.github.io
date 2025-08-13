@@ -1,0 +1,75 @@
+---
+layout: page
+title: "Album"
+permalink: /photography/album1/
+raw_links: |
+  https://drive.google.com/file/d/FILE_ID1/view?usp=sharing, Caption 1
+  https://drive.google.com/file/d/FILE_ID2/view?usp=sharing, Caption 2
+  https://drive.google.com/file/d/FILE_ID3/view?usp=sharing, Caption 3
+---
+
+<!-- USE THIS IN CONSOLE TO RETURN MULTIPLE LINES RATHER THAN A LONG LINE
+const longLine = "INSERT-LINKS-HERE";
+const items = longLine.split(", ");
+console.log(items);
+
+
+// Paste your long single line here
+const longLine = "https://drive.google.com/file/d/1-L1FJ_69ipfXywQYwDXfwAfNnqCmkH8W/view?usp=sharing, https://drive.google.com/file/d/1-gsnHDpX3mEAPeD_9AjPnhfmqG264Be0/view?usp=sharing, https://drive.google.com/file/d/109rMpwYxdAjF02lFMFh7NccnmLCiW0Eh/view?usp=sharing";
+
+// Split into array (handles newlines and spaces)
+const items = longLine.trim().split(/\s*,\s*/);
+
+// Convert to objects for gallery
+const galleryArray = items.map(url => {
+  // Optional: if you want captions, add manually here like url.split("|")[1] or leave empty
+  return `{ url: "${url}", caption: "" }`;
+});
+
+// Print multi-line array ready to paste
+console.log(galleryArray.join(",\n"));
+-->
+
+<link rel="stylesheet" href="/public/css/gallery.css">
+
+<div class="page">
+
+  <!-- Gallery -->
+  <div id="gallery" class="gallery"></div>
+
+</div>
+
+<script>
+const rawLinks = `{{ page.raw_links }}`.trim();
+
+const images = rawLinks.split("\n").map(line => {
+  const [url, caption] = line.split(",").map(s => s.trim());
+  const fileIdMatch = url.match(/\/d\/(.*?)\//);
+  const directUrl = fileIdMatch ? `https://drive.google.com/uc?export=view&id=${fileIdMatch[1]}` : url;
+  return { url: directUrl, caption };
+});
+
+const galleryDiv = document.getElementById("gallery");
+
+images.forEach(img => {
+  const link = document.createElement("a");
+  link.href = img.url;
+  link.target = "_blank";
+
+  const image = document.createElement("img");
+  image.src = img.url;
+  image.alt = img.caption;
+  image.loading = "lazy";
+
+  const caption = document.createElement("p");
+  caption.innerText = img.caption;
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "gallery-item";
+  wrapper.appendChild(image);
+  wrapper.appendChild(caption);
+
+  link.appendChild(wrapper);
+  galleryDiv.appendChild(link);
+});
+</script>

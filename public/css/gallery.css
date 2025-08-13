@@ -1,0 +1,36 @@
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.gallery a {
+  text-decoration: none;
+  color: inherit;
+  flex: 1 1 calc(33% - 1rem);
+}
+
+.gallery-item img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.gallery-item p {
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .gallery a {
+    flex: 1 1 calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery a {
+    flex: 1 1 100%;
+  }
+}
