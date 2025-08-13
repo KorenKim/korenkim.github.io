@@ -1,13 +1,14 @@
 
 .gallery {
   width: 100%;
-  max-width: 1000px; /* or whatever fits your layout */
+  max-width: 1200px; /* or whatever fits your layout */
   margin: 0 auto;
 }
 
 .gallery-sizer {
-  width: 200px; /* base column width */
+  /*width: 200px;/* base column width */
   display: inline-block;
+  /*width: 48%; /* responsive: 2 per row on small screens */
 }
 
 .gallery-item {
@@ -41,10 +42,26 @@
   opacity: 1;
 }
 
-/* Mobile: at least 2 images per row */
+/* Desktop: more columns */
+@media(min-width: 900px) {
+  .gallery-sizer,
+  .gallery-item {
+    width: 200px; /* ~5-6 columns on desktop */
+  }
+}
+
+/* Tablet: fewer columns */
+@media(max-width: 899px) and (min-width: 501px) {
+  .gallery-sizer,
+  .gallery-item {
+    width: 150px; /* ~3-4 columns */
+  }
+}
+
+/* Mobile: at least 2 columns */
 @media(max-width: 500px) {
   .gallery-sizer,
   .gallery-item {
-    width: 48%;
+    width: 48%; /* 2 per row */
   }
 }

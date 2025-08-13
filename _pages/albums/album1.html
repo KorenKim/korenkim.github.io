@@ -78,12 +78,13 @@ images.forEach(img => {
 // Wait for all images to load before initializing Masonry
 imagesLoaded(galleryDiv, () => {
   const msnry = new Masonry(galleryDiv, {
-    itemSelector: '.gallery-item',
-    columnWidth: '.gallery-item',
-    gutter: 15,
-    percentPosition: true,
-    fitWidth: true
-  });
+  itemSelector: '.gallery-item',
+  columnWidth: '.gallery-sizer', // use the sizer for responsive columns
+  gutter: 15,
+  percentPosition: true,
+  fitWidth: true
+});
+
 
   // Staggered fade-in
   const items = document.querySelectorAll('.gallery-item');

@@ -79,7 +79,7 @@ images.forEach(img => {
 imagesLoaded(galleryDiv, () => {
   const msnry = new Masonry(galleryDiv, {
     itemSelector: '.gallery-item',
-    columnWidth: '.gallery-sizer',
+    columnWidth: '.gallery-item',
     gutter: 15,
     percentPosition: true,
     fitWidth: true
